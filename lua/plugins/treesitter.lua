@@ -5,14 +5,11 @@
 
 return {
   "nvim-treesitter/nvim-treesitter",
-  version = false, -- Usar versión master (recomendado por nvim-treesitter)
+  version = false, 
+  branch = "master", -- Forzamos master para estabilidad
   build = ":TSUpdate",
   event = { "BufReadPost", "BufNewFile" },
   cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-  keys = {
-    { "<c-space>", desc = "Increment selection" },
-    { "<bs>", desc = "Decrement selection", mode = "x" },
-  },
   opts = {
     ensure_installed = {
       "javascript", "typescript", "tsx", "python", "html", "css",
