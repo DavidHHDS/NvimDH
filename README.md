@@ -1,6 +1,6 @@
 # Neovim DH Edition
 
-Configuración personalizada de Neovim + Zellij para desarrollo web moderno.
+Configuración personalizada de Neovim sobre Zellij + LSP + Debugger.
 
 ---
 
@@ -112,8 +112,26 @@ Configuración personalizada de Neovim + Zellij para desarrollo web moderno.
 | `Alt + m` | **Move** | Mover paneles |
 | `Alt + r` | **Resize** | Redimensionar |
 | `Alt + s` | **Scroll** | Scroll y búsqueda |
-| `Alt + o` | **Session** | Sesiones |
+| `Alt + o` | **Session** | Gestión de sesiones |
 | `Alt + q` | **Quit** | Salir |
+
+### Session Mode (`Alt + o`) - Gestión de Sesiones
+
+| Tecla | Acción |
+|-------|--------|
+| `d` | **Detach** - Salir sin cerrar (sesión sigue en background) |
+| `w` | Abrir **gestor de sesiones** (cambiar, renombrar, eliminar) |
+| `c` | Abrir **configuración** |
+| `p` | Abrir gestor de **plugins** |
+| `Esc` | Volver a modo normal |
+
+**Comandos de terminal para sesiones:**
+
+```bash
+zellij list-sessions    # Ver sesiones activas
+zellij attach <nombre>  # Reconectar a sesión
+zellij kill-session <n> # Eliminar sesión
+```
 
 ### Navegación Rápida
 
@@ -176,6 +194,27 @@ Configuración personalizada de Neovim + Zellij para desarrollo web moderno.
 | `K` | Documentación |
 | `Space la` | Acciones de código |
 | `Space cf` | Formatear |
+
+### Rodear Texto (Surround)
+
+| Atajo | Descripción |
+|-------|-------------|
+| `sa` | **Añadir** alrededor (Surround Add) |
+| `sd` | **Borrar** alrededor (Surround Delete) |
+| `sr` | **Reemplazar** alrededor (Surround Replace) |
+| `sf` | **Buscar** alrededor (Surround Find) |
+| `sh` | **Resaltar** alrededor (Surround Highlight) |
+
+**Ejemplos de Uso:**
+
+| Acción | Comando | Estado Inicial | Estado Final |
+|--------|---------|----------------|--------------|
+| **Añadir** | `saw"` | `hola` | `"hola"` |
+| **Añadir** | `saIW(` | `function` | `(function)` |
+| **Borrar** | `sd"` | `"hola"` | `hola` |
+| **Reemplazar** | `sr")` | `"hola"` | `(hola)` |
+| **Reemplazar** | `sr(<tp>` | `(hola)` | `<tp>hola</tp>` |
+
 
 ### General
 

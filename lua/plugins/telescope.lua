@@ -24,6 +24,7 @@ return {
     { "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Atajos" },
     { "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Símbolos" },
     { "<leader>fw", "<cmd>Telescope grep_string<cr>", desc = "Palabra bajo cursor" },
+    { "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buscar en archivo" },
   },
   opts = {
     defaults = {
