@@ -23,15 +23,15 @@ return {
       python = { "ruff_format" },
 
       -- JavaScript/TypeScript
-      javascript = { "prettier" },
-      javascriptreact = { "prettier" },
-      typescript = { "prettier" },
-      typescriptreact = { "prettier" },
+      javascript = { "eslint_d" },
+      javascriptreact = { "eslint_d" },
+      typescript = { "eslint_d" },
+      typescriptreact = { "eslint_d" },
 
       -- Frameworks web
-      svelte = { "prettier" },
-      astro = { "prettier" },
-      vue = { "prettier" },
+      svelte = { "eslint_d" },
+      astro = { "eslint_d" },
+      vue = { "eslint_d" },
 
       -- HTML/CSS
       html = { "prettier" },

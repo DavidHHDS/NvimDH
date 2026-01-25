@@ -49,14 +49,14 @@ Quiero crear mi poropia configuración de nvim que ya está instalado y que teng
     - Lua
     - Rust
     - XML
-6. Deben haber linters y formateadores
-    - Python (ruff)
-    - JavaScript (prettier)
-    - TypeScript (prettier)
-    - Svelte (prettier)
-    - Astro (prettier)
-    - Angular (prettier)
-    - React (prettier)
+6. Deben haber linters y formateadores (Regla: Si ESLint puede formatear y lintar, usar SOLO ESLint)
+    - Python (ruff) - Linter y Formatter
+    - JavaScript (eslint) - Linter y Formatter
+    - TypeScript (eslint) - Linter y Formatter
+    - Svelte (eslint) - Linter y Formatter
+    - Astro (eslint) - Linter y Formatter
+    - Angular (eslint) - Linter y Formatter
+    - React (eslint) - Linter y Formatter
     - HTML (prettier)
     - CSS (prettier)
     - JSON (prettier)
