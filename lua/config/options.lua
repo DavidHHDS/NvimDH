@@ -57,17 +57,37 @@ opt.completeopt = "menu,menuone,noselect"
 -- opt.clipboard = "unnamedplus"
 
 -- Usar OSC 52 para copiar al sistema (Neovim 0.10+ soporta esto nativamente)
--- Esto permite que el yank al registro + funcione incluso en SSH/tmux
+-- Implementamos una caché interna para "paste" porque osc52 read no es fiable/rápido
+-- y xsel falla en entornos sin X11.
+local osc52 = require("vim.ui.clipboard.osc52")
+local clipboard_cache = { ["+"] = {}, ["*"] = {} }
+
+local function copy(register)
+  return function(lines, type)
+    clipboard_cache[register] = { lines = lines, type = type }
+    osc52.copy(register)(lines, type)
+  end
+end
+
+local function paste(register)
+  return function()
+    local content = clipboard_cache[register]
+    if content and content.lines then
+      return content.lines, content.type
+    end
+    return nil -- O retornar lista vacía {}
+  end
+end
+
 vim.g.clipboard = {
-  name = "OSC 52",
+  name = "OSC 52 (Cached)",
   copy = {
-    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    ["+"] = copy("+"),
+    ["*"] = copy("*"),
   },
   paste = {
-    -- Para pegar, usamos xsel como fallback (OSC 52 paste no siempre funciona)
-    ["+"] = "xsel --clipboard --output",
-    ["*"] = "xsel --primary --output",
+    ["+"] = paste("+"),
+    ["*"] = paste("*"),
   },
 }
 
