@@ -48,17 +48,31 @@ opt.timeoutlen = 300
 opt.completeopt = "menu,menuone,noselect"
 
 -- ══════════════════════════════════════════════════════════════════════════════
--- CLIPBOARD
--- y/p: registro interno de Neovim
--- <leader>y / <leader>p: portapapeles del sistema
+-- CLIPBOARD con OSC52
+-- Fuente: https://github.com/ojroques/nvim-osc52
+-- Docs Neovim: :h clipboard-osc52
+-- ══════════════════════════════════════════════════════════════════════════════
+--
+-- IMPORTANTE: OSC52 es un protocolo de SOLO ESCRITURA al clipboard del sistema.
+-- ¡NO puede LEER el clipboard del sistema!
+--
+-- Comportamiento:
+--   COPIAR desde Neovim al sistema:
+--     - <leader>y  → Copia al clipboard del sistema (funciona en SSH/remoto)
+--     - Funciona porque OSC52 ESCRIBE al clipboard de la terminal
+--
+--   PEGAR desde el sistema a Neovim:
+--     - Ctrl+Shift+V → Usa el paste de la TERMINAL (WezTerm/iTerm2/etc)
+--     - <leader>p solo pega texto copiado DENTRO de esta sesión de Neovim
+--     - OSC52 NO puede leer el clipboard externo
+--
 -- ══════════════════════════════════════════════════════════════════════════════
 
 -- NO usar clipboard del sistema por defecto (y/p quedan internos)
 -- opt.clipboard = "unnamedplus"
 
 -- Usar OSC 52 para copiar al sistema (Neovim 0.10+ soporta esto nativamente)
--- Implementamos una caché interna para "paste" porque osc52 read no es fiable/rápido
--- y xsel falla en entornos sin X11.
+-- Caché interna para texto copiado DENTRO de Neovim (paste externo: Ctrl+Shift+V)
 local osc52 = require("vim.ui.clipboard.osc52")
 local clipboard_cache = { ["+"] = {}, ["*"] = {} }
 

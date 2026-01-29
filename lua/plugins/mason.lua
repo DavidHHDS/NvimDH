@@ -78,7 +78,9 @@ return {
         "markdownlint",
       },
       auto_update = true,
-      run_on_start = true,
+      run_on_start = true,      -- Verificar al inicio
+      start_delay = 3000,       -- 3 segundos de espera para que Mason se inicialice
+      debounce_hours = 24,      -- No reinstalar si pasaron menos de 24 horas
     },
   },
 }

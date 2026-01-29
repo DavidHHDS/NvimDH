@@ -139,17 +139,13 @@ map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 map("n", "<leader>M", "<cmd>Mason<cr>", { desc = "Mason" })
 
 -- ┌──────────────────────────────────────────────────────────────────────────┐
--- │                        Clipboard del Sistema                             │
+-- │                        Clipboard del Sistema (OSC52)                     │
 -- └──────────────────────────────────────────────────────────────────────────┘
--- NOTA: Ctrl+Shift+C/V son capturados por la terminal, no llegan a Neovim
--- Por eso usamos <leader>y / <leader>p que funcionan siempre
+-- OSC52 solo puede ESCRIBIR al clipboard, no leer.
+-- Para pegar desde el sistema externo: Ctrl+Shift+V (terminal)
 
 -- Copiar al portapapeles del sistema
 map("n", "<leader>y", '"+y', { desc = "Copiar al sistema" })
 map("v", "<leader>y", '"+y', { desc = "Copiar al sistema" })
 map("n", "<leader>Y", '"+Y', { desc = "Copiar línea al sistema" })
 
--- Pegar desde el portapapeles del sistema
-map("n", "<leader>p", '"+p', { desc = "Pegar desde sistema" })
-map("v", "<leader>p", '"+p', { desc = "Pegar desde sistema" })
-map("n", "<leader>P", '"+P', { desc = "Pegar antes desde sistema" })
