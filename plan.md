@@ -83,7 +83,8 @@ Quiero crear mi poropia configuración de nvim que ya está instalado y que teng
     - XML (node)
 8. Quiero que salgan mis iniciales "DH" en el panel de lazy.
 9. Ayuda con los atajos de teclado.
-10. Los atajos de teclado no deben ser conflictivos con los de zellij.
+10. Los atajos de teclado no deben ser conflictivos con los de zellij
+    - Zellij está configurado para usar Alt como lead key, ver config.kdl
 
 ## Reglas.
 1. La configuración debe ser en lua.
