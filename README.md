@@ -14,6 +14,24 @@ Configuración personalizada de Neovim sobre Zellij + LSP + Debugger.
 
 ---
 
+## Diccionario de Leader Keys
+
+Al presionar `Space` se muestra el menú de which-key con estos grupos:
+
+| Leader  | Grupo        | Descripción                    |
+| ------- | ------------ | ------------------------------ |
+| `Space b` | **Buffer**   | Gestión de buffers             |
+| `Space c` | **Código**   | Formateo y acciones de código  |
+| `Space d` | **Debug**    | Breakpoints, step, REPL        |
+| `Space f` | **Buscar**   | Telescope + explorador         |
+| `Space g` | **Git**      | LazyGit, hunks, blame          |
+| `Space l` | **LSP**      | Definición, referencias, acción|
+| `Space u` | **UI/Toggle**| Toggles de interfaz            |
+| `Space w` | **Ventana**  | Splits y gestión de ventanas   |
+| `Space x` | **Diagnósticos** | Trouble, quickfix          |
+
+---
+
 ## Movimientos Esenciales de Vim
 
 ### Movimiento por Líneas (con números relativos)
@@ -145,7 +163,7 @@ zellij kill-session <n> # Eliminar sesión
 
 ## Neovim: Atajos Personalizados
 
-### Ventanas (Ctrl+w)
+### Ventanas y Splits
 
 | Atajo            | Descripción            |
 | ---------------- | ---------------------- |
@@ -153,14 +171,51 @@ zellij kill-session <n> # Eliminar sesión
 | `Ctrl+w v`       | Split vertical         |
 | `Ctrl+w s`       | Split horizontal       |
 | `Ctrl+w c`       | Cerrar ventana         |
+| `Space -`        | Split horizontal       |
+| `Space \|`       | Split vertical         |
+| `Space wd`       | Cerrar ventana         |
+| `Space wm`       | Maximizar ventana      |
 
 ### Explorador (Neo-tree)
 
-| Atajo     | Descripción           |
-| --------- | --------------------- |
-| `Space e` | Toggle explorador     |
-| `a` / `A` | Crear archivo/carpeta |
-| `d` / `r` | Eliminar/renombrar    |
+Atajos **globales** para abrir/cerrar:
+
+| Atajo      | Descripción                |
+| ---------- | -------------------------- |
+| `Space e`  | Toggle explorador          |
+| `Space E`  | Revelar archivo actual     |
+| `Space fe` | Toggle explorador (alias)  |
+| `Space fE` | Revelar archivo (alias)    |
+| `Space be` | Explorador de buffers      |
+| `Space ge` | Explorador de git status   |
+
+Atajos **dentro del explorador** (estilo LazyVim):
+
+| Tecla    | Acción                           |
+| -------- | -------------------------------- |
+| `l`      | **Abrir** archivo/expandir nodo  |
+| `h`      | **Cerrar** nodo/subir a padre    |
+| `Enter`  | Abrir archivo                    |
+| `o`      | Abrir archivo (alias)            |
+| `s`      | Abrir en split horizontal        |
+| `v`      | Abrir en split vertical          |
+| `t`      | Abrir en nueva pestaña           |
+| `P`      | Toggle preview                   |
+| `a`      | **Crear** archivo                |
+| `A`      | **Crear** directorio             |
+| `r`      | **Renombrar**                    |
+| `d`      | **Eliminar**                     |
+| `c`      | **Copiar** a destino             |
+| `m`      | **Mover** a destino              |
+| `y`      | Copiar al clipboard (cut/paste)  |
+| `x`      | Cortar al clipboard (cut/paste)  |
+| `p`      | Pegar desde clipboard            |
+| `Y`      | Copiar **ruta** al sistema       |
+| `O`      | Abrir con app del **sistema**    |
+| `R`      | Refrescar                        |
+| `?`      | Mostrar **ayuda**                |
+| `<` / `>`| Cambiar fuente (fs/buffers/git)  |
+| `q`      | Cerrar explorador                |
 
 ### Buffers
 
@@ -168,6 +223,7 @@ zellij kill-session <n> # Eliminar sesión
 | ------------- | ------------------------- |
 | `Shift + L/H` | Buffer siguiente/anterior |
 | `Space bd`    | Cerrar buffer             |
+| `Space bD`    | Cerrar todos los buffers  |
 
 ### Búsqueda (Telescope)
 
@@ -175,7 +231,12 @@ zellij kill-session <n> # Eliminar sesión
 | ---------- | --------------- |
 | `Space ff` | Buscar archivos |
 | `Space fg` | Buscar texto    |
+| `Space fb` | Buscar buffers  |
+| `Space fh` | Buscar ayuda    |
 | `Space fr` | Recientes       |
+| `Space fc` | Comandos        |
+| `Space fk` | Atajos          |
+| `Space ft` | Buscar TODOs    |
 
 ### Clipboard
 
@@ -183,17 +244,59 @@ zellij kill-session <n> # Eliminar sesión
 | --------- | -------------------- |
 | `y` / `p` | Copiar/pegar interno |
 | `Space y` | Copiar al sistema    |
-| `Space p` | Pegar del sistema    |
+| `Space Y` | Copiar línea al sist.|
 
 ### LSP
 
 | Atajo      | Descripción        |
 | ---------- | ------------------ |
-| `gd`       | Ir a definición    |
-| `gr`       | Ver referencias    |
-| `K`        | Documentación      |
+| `Space ld` | Ir a definición    |
+| `Space lD` | Ir a declaración   |
+| `Space lr` | Ver referencias    |
+| `Space li` | Implementación     |
+| `Space lt` | Tipo de definición |
+| `Space lh` | Mostrar info       |
+| `Space ls` | Firma de función   |
+| `Space ln` | Renombrar símbolo  |
 | `Space la` | Acciones de código |
-| `Space cf` | Formatear          |
+| `Space cf` | **Formatear**      |
+
+### Diagnósticos
+
+| Atajo      | Descripción        |
+| ---------- | ------------------ |
+| `Space dd` | Mostrar diagnóstico|
+| `Space dn` | Siguiente diag.    |
+| `Space dp` | Diagnóstico anterior|
+| `Space dl` | Lista diagnósticos |
+| `Space xx` | Trouble toggle     |
+| `Space xd` | Trouble buffer     |
+| `Space xs` | Trouble símbolos   |
+
+### Git
+
+| Atajo      | Descripción        |
+| ---------- | ------------------ |
+| `Space gg` | LazyGit            |
+| `Space gp` | Preview hunk       |
+| `Space gb` | Blame línea        |
+| `Space gd` | Diff               |
+| `Space gr` | Reset hunk         |
+| `Space gs` | Stage hunk         |
+| `Space gu` | Unstage hunk       |
+| `]h` / `[h`| Siguiente/anterior hunk |
+
+### Debug (DAP)
+
+| Atajo      | Descripción        |
+| ---------- | ------------------ |
+| `Space db` | Toggle breakpoint  |
+| `Space dc` | Continuar          |
+| `Space di` | Step into          |
+| `Space do` | Step over          |
+| `Space dO` | Step out           |
+| `Space dr` | REPL               |
+| `Space dt` | Terminar           |
 
 ### Rodear Texto (Surround)
 
@@ -220,5 +323,10 @@ zellij kill-session <n> # Eliminar sesión
 | Atajo     | Descripción          |
 | --------- | -------------------- |
 | `Space w` | Guardar              |
+| `Space W` | Guardar todo         |
 | `Space q` | Salir                |
+| `Space Q` | Salir sin guardar    |
+| `Space L` | Lazy (plugins)       |
+| `Space M` | Mason (LSP servers)  |
 | `Space ?` | Ver todos los atajos |
+| `Esc`     | Limpiar búsqueda     |

@@ -33,6 +33,9 @@ opt.scrolloff = 8
 opt.sidescrolloff = 8
 opt.wrap = false
 
+-- Separador sutil entre ventanas (Neo-tree ↔ código)
+opt.fillchars:append({ vert = "│", horiz = "─", verthoriz = "┼" })
+
 -- Archivos
 opt.swapfile = false
 opt.backup = false
@@ -109,8 +112,8 @@ vim.g.clipboard = {
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 
--- Columna de límite
-opt.colorcolumn = "100"
+-- Columna de límite: desactivada, se usa virt-column.nvim para línea delgada
+-- opt.colorcolumn = "100"
 
 -- Ocultar modo (lo muestra lualine)
 opt.showmode = false

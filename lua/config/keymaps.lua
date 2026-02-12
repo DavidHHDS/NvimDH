@@ -43,6 +43,12 @@ map("n", "<leader>wc", "<C-w>c", { desc = "Cerrar ventana" })
 map("n", "<leader>wo", "<C-w>o", { desc = "Cerrar otras ventanas" })
 map("n", "<leader>w=", "<C-w>=", { desc = "Igualar tamaño" })
 
+-- Splits rápidos estilo LazyVim
+map("n", "<leader>-", "<C-w>s", { desc = "Split horizontal" })
+map("n", "<leader>|", "<C-w>v", { desc = "Split vertical" })
+map("n", "<leader>wd", "<C-w>c", { desc = "Cerrar ventana" })
+map("n", "<leader>wm", "<cmd>only<cr>", { desc = "Maximizar ventana" })
+
 -- ┌──────────────────────────────────────────────────────────────────────────┐
 -- │                         Buffers                                          │
 -- └──────────────────────────────────────────────────────────────────────────┘
@@ -55,10 +61,20 @@ map("n", "<leader>bD", "<cmd>%bdelete<cr>", { desc = "Cerrar todos los buffers" 
 -- ┌──────────────────────────────────────────────────────────────────────────┐
 -- │                     Explorador de Archivos                               │
 -- └──────────────────────────────────────────────────────────────────────────┘
+-- NOTA: <leader>e, <leader>E, <leader>fe, <leader>fE definidos en neo-tree.lua
 
-map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Explorador" })
-map("n", "<leader>E", "<cmd>Neotree reveal<cr>", { desc = "Revelar archivo actual" })
+-- ┌──────────────────────────────────────────────────────────────────────────┐
+-- │                      Pestañas (Tabs)                                     │
+-- └──────────────────────────────────────────────────────────────────────────┘
+-- Estilo LazyVim: <leader><tab> para gestión de pestañas
 
+map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "Nueva pestaña" })
+map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Cerrar pestaña" })
+map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Última pestaña" })
+map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "Primera pestaña" })
+map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Siguiente pestaña" })
+map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Pestaña anterior" })
+map("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Cerrar otras pestañas" })
 -- ┌──────────────────────────────────────────────────────────────────────────┐
 -- │                         Búsqueda (Telescope)                             │
 -- └──────────────────────────────────────────────────────────────────────────┘
@@ -137,6 +153,18 @@ map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- Mason
 map("n", "<leader>M", "<cmd>Mason<cr>", { desc = "Mason" })
+
+-- ┌──────────────────────────────────────────────────────────────────────────┐
+-- │                         Ayuda (prefijos nativos)                         │
+-- └──────────────────────────────────────────────────────────────────────────┘
+-- Desde <leader>h se puede descubrir cómo acceder a los prefijos nativos
+
+map("n", "<leader>hv", function() require("which-key").show("<C-w>") end, { desc = "Ventanas (Ctrl+w)" })
+map("n", "<leader>hg", function() require("which-key").show("g") end, { desc = "Goto (g)" })
+map("n", "<leader>hn", function() require("which-key").show("]") end, { desc = "Siguiente (])" })
+map("n", "<leader>hp", function() require("which-key").show("[") end, { desc = "Anterior ([)" })
+map("n", "<leader>hz", function() require("which-key").show("z") end, { desc = "Folds/Scroll (z)" })
+map("n", "<leader>hs", function() require("which-key").show("s") end, { desc = "Surround (s)" })
 
 -- ┌──────────────────────────────────────────────────────────────────────────┐
 -- │                        Clipboard del Sistema (OSC52)                     │

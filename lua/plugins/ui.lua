@@ -43,6 +43,13 @@ return {
         treesitter = true,
         which_key = true,
       },
+      custom_highlights = function(colors)
+        return {
+          -- Separador visible entre Neo-tree y código
+          WinSeparator = { fg = colors.surface2, bg = "NONE" },
+          NeoTreeWinSeparator = { fg = colors.surface2, bg = "NONE" },
+        }
+      end,
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)
@@ -187,5 +194,26 @@ return {
         enabled = true,
       },
     },
+  },
+  -- Virt-column: línea delgada en lugar del colorcolumn ancho
+  -- Fuente: https://github.com/lukas-reineke/virt-column.nvim
+  {
+    "lukas-reineke/virt-column.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {
+      char = "│",
+      virtcolumn = "100",
+      highlight = "VirtColumn",
+    },
+    config = function(_, opts)
+      -- Color sutil para la línea vertical
+      vim.api.nvim_set_hl(0, "VirtColumn", { fg = "#313244" })
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        callback = function()
+          vim.api.nvim_set_hl(0, "VirtColumn", { fg = "#313244" })
+        end,
+      })
+      require("virt-column").setup(opts)
+    end,
   },
 }

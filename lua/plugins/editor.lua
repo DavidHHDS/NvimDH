@@ -33,13 +33,25 @@ return {
         },
       },
       spec = {
+        -- Leader groups
         { "<leader>b", group = "Buffer" },
         { "<leader>c", group = "Código" },
         { "<leader>d", group = "Debug" },
         { "<leader>f", group = "Buscar" },
         { "<leader>g", group = "Git" },
+        { "<leader>h", group = "Ayuda" },
         { "<leader>l", group = "LSP" },
+        { "<leader>u", group = "UI/Toggle" },
+        { "<leader>w", group = "Ventana" },
         { "<leader>x", group = "Diagnósticos" },
+        { "<leader>y", group = "Clipboard" },
+        { "<leader><tab>", group = "Pestañas" },
+        -- Prefijos nativos
+        { "<C-w>", group = "Ventanas" },
+        { "g", group = "Goto" },
+        { "]", group = "Siguiente" },
+        { "[", group = "Anterior" },
+        { "z", group = "Folds/Scroll" },
       },
     },
     keys = {
